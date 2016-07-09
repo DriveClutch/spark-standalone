@@ -1,17 +1,15 @@
-FROM java:openjdk-8
- 
-MAINTAINER Sang Venkatraman <sang@driveclutch.com>
+FROM driveclutch/alpine-java:1.0
+
+MAINTAINER Sang Venkatraman <sang@driveclutch.com> 
+
+USER root
 
 ARG __SPARK_DIST_NAME=spark-1.6.2-bin-hadoop-2.6_scala-2.11
-
-RUN apt-get update \
-	&& apt-get -y install curl wget bash \
-	&& rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt
 WORKDIR /opt
 COPY ${__SPARK_DIST_NAME}.tgz .
-RUN tar -xvf ${__SPARK_DIST_NAME}.tgz 
+RUN tar -zxvf ${__SPARK_DIST_NAME}.tgz 
 RUN mv ${__SPARK_DIST_NAME} spark
 
 COPY scripts /opt/spark/docker-scripts
