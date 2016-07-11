@@ -4,7 +4,7 @@ MAINTAINER Sang Venkatraman <sang@driveclutch.com>
 
 USER root
 
-ARG __SPARK_DIST_NAME=spark-1.6.2-bin-hadoop-2.6_scala-2.11
+ARG __SPARK_DIST_NAME=spark-1.6.2-bin-spark-1.6.2-hadoop-2.6-built-java8-scala2.11
 
 RUN mkdir -p /opt
 WORKDIR /opt

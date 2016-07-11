@@ -1,0 +1,1 @@
+docker exec -it spark-master /opt/spark/bin/spark-submit --master spark://$1:7077 --packages com.databricks:spark-csv_2.11:1.4.0  --class com.driveclutch.QRFactorizationLinearRegression /opt/spark/jobs/ml-core_2.11-1.0.0.0-SNAPSHOT.jar
