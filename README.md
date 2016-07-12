@@ -16,31 +16,35 @@ iii) The following command builds a tgz file in the root of the directory
 
     ./make-distribution.sh --name spark-1.6.2-hadoop-2.6-built-java8-scala2.11 --tgz -Psparkr -Phadoop-2.6 -Dhadoop.version=2.6.2 -Dscala-2.11 -Phive
 
-##Building the docker image
+###Building the docker image
 
 Clone this repository. At the root of this repo, drop the custom spark distribution tgz file. Then run (don't forget the . at the end)
 
     docker build -t driveclutch/spark-standalone .
 
-##Use the published docker image (recommended approach)
+##Pull the published docker image (recommended approach)
 
 i) Pull the docker image
 
     docker pull driveclutch/spark-standalone
+    
+###Run containers for master, workers and submit job
 
-ii) Run the following scripts to run a master container, 2 workers and submit a test job to master
+####Run the following scripts to run a master container, 2 workers and submit a test job to master
 
 	./recreate_spark_network.sh
     
 	./start_master.sh  (and then go to http://localhost:8080 and get the <MASTER_IP> from the url)
     
-	./start_workers.sh <MASTER_HOST>
+	./start_workers.sh <MASTER_IP>
+	
+####Submit a simple job to calculate the value of pi to master
     
 	./submit_job.sh
 
-iii) Submit an actual spark job (this uses code in a private repository and you may not have access to that)
+####Submit an actual spark job (this uses code in a private repository and you may not have access to that)
 
-	./submit_fvp.sh <MASTER_HOST>
+	./submit_fvp.sh <MASTER_IP>
 
 ##Environment Variables
 
